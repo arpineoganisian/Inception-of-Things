@@ -1,34 +1,49 @@
+system("
+    if [ #{ARGV[0]} = 'up' ]; then
+        echo '-----Check box-----'
+        ./install_box.sh
+        echo '-----Generate ssh keys-----'
+        ssh-keygen -f inception -q -N ""
+    fi
+")
+
+
 Vagrant.configure(2) do |config|
-    # Образ виртуальной машины с Vagrant Cloud - по сабжекту CentOS
+    # Образ виртуальной машины с Vagrant Cloud - по сабджекту CentOS
     config.vm.box = "centos8"
     # The URL that the configured box can be found at.
     config.vm.box_url =
 
     # Server
-    config.vm.define "hwoodwriS" do |control|
-        control.vm.hostname = "hwoodwriS"
-        control.vm.network REDACTED, ip: "192.168.42.110"
-        control.vm.provider REDACTED do |v|
+    config.vm.define "hwoodwriS" do |server|
+        server.vm.hostname = "hwoodwriS"
+        server.vm.network REDACTED, ip: "192.168.42.110"
+        # Настройки виртуальной машины и выбор провайдера
+        server.vm.provider "virtualbox" do |v|
             v.customize ["modifyvm", :id, "--name", "hwoodwriS"]
-        [...]
+            # 1 Гб оперативной памяти
+            v.memory = "1024"
+            # Одноядерный процессор
+            v.cpus = 1
         end
+    # Команда, которая выполнится после создания машины
     config.vm.provision :shell, :inline => SHELL
-    [...]
     SHELL
-    control.vm.provision "shell", path: REDACTED
+        server.vm.provision "shell", path: "./install_Server.sh"
     end
 
     # ServerWorker
-    config.vm.define "hwoodwriSW" do |control|
-       control.vm.hostname = "hwoodwriS"
-        control.vm.network REDACTED, ip: "192.168.42.111"
-        control.vm.provider REDACTED do |v|
+    config.vm.define "hwoodwriSW" do |agent|
+        agent.vm.hostname = "hwoodwriS"
+        agent.vm.network REDACTED, ip: "192.168.42.111"
+        agent.vm.provider "virtualbox" do |v|
             v.customize ["modifyvm", :id, "--name", "hwoodwriSW"]
-        [...]
+            v.memory = "1024"
+            v.cpus = 1
         end
     config.vm.provision "shell", inline: <<-SHELL
-    [..]
     SHELL
-    control.vm.provision "shell", path: REDACTED
+        agent.vm.provision "shell", path: "./install_ServerWorker.sh"
     end
+
 end
