@@ -1,5 +1,21 @@
 # Inception-of-Things
-System Administration related exercise
+_System Administration related exercise_
+
+### p1: K3s and Vagrant
+`vagrant up` creates and configures guest machines
+
+`vagrant halt` shuts down the running machine
+
+`vagrant reload`  halt + up
+
+`vagrant destroy` stops the running machine and destroys all resources that were created
+
+`vagrant status` tells the state of the machines
+
+### p2: K3s and three simple applications
+
+### p3: K3d and Argo CD
+
 
 ### References:
 

@@ -1,23 +1,25 @@
-system("
-    if [ #{ARGV[0]} = 'up' ]; then
-        echo '-----Check box-----'
-        ./install_box.sh
-        echo '-----Generate ssh keys-----'
-        ssh-keygen -f inception -q -N ""
-    fi
-")
-
+# system("
+#     if [ #{ARGV[0]} = 'up' ]; then
+#         echo '-----Check box-----'
+#         ./install_box.sh
+#         echo '-----Generate ssh keys-----'
+#         ssh-keygen -f inception -q -N ""
+#     fi
+# ")
 
 Vagrant.configure(2) do |config|
     # Образ виртуальной машины с Vagrant Cloud - по сабджекту CentOS
-    config.vm.box = "centos8"
-    # The URL that the configured box can be found at.
-    config.vm.box_url =
+    config.vm.box = "centos/8"
+    # The URL that the configured box can be found at
+    config.vm.box_url = "https://app.vagrantup.com/centos/boxes/8"
 
     # Server
+    # Имя виртуальной машины
     config.vm.define "hwoodwriS" do |server|
+        # If set, Vagrant will update /etc/hosts on the guest with the configured hostname
         server.vm.hostname = "hwoodwriS"
-        server.vm.network REDACTED, ip: "192.168.42.110"
+        # Настройка сети на виртуальной машине
+        server.vm.network "private_network", ip: "192.168.42.110"
         # Настройки виртуальной машины и выбор провайдера
         server.vm.provider "virtualbox" do |v|
             v.customize ["modifyvm", :id, "--name", "hwoodwriS"]
@@ -27,23 +29,25 @@ Vagrant.configure(2) do |config|
             v.cpus = 1
         end
     # Команда, которая выполнится после создания машины
-    config.vm.provision :shell, :inline => SHELL
-    SHELL
-        server.vm.provision "shell", path: "./install_Server.sh"
+        server.vm.provision "shell", run: "always", path: "./install_server.sh"
+#     config.vm.provision :shell, :inline => SHELL
+#     SHELL
+#         server.vm.provision "shell", path: "./install_server.sh"
     end
 
     # ServerWorker
     config.vm.define "hwoodwriSW" do |agent|
-        agent.vm.hostname = "hwoodwriS"
-        agent.vm.network REDACTED, ip: "192.168.42.111"
+        agent.vm.hostname = "hwoodwriSW"
+        agent.vm.network "private_network", ip: "192.168.42.111"
         agent.vm.provider "virtualbox" do |v|
             v.customize ["modifyvm", :id, "--name", "hwoodwriSW"]
             v.memory = "1024"
             v.cpus = 1
         end
-    config.vm.provision "shell", inline: <<-SHELL
-    SHELL
-        agent.vm.provision "shell", path: "./install_ServerWorker.sh"
+    agent.vm.provision "shell", run: "always", path: "./install_serverworker.sh"
+#     config.vm.provision "shell", inline: <<-SHELL
+#     SHELL
+#         agent.vm.provision "shell", path: "./install_serverworker.sh"
     end
 
 end
