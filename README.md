@@ -28,7 +28,9 @@ _System Administration related exercise_
 - [Про мини-кластеры в Kubernetes в целом](https://habr.com/ru/company/flant/blog/572188/)
 - [K3s](https://k3s.io/)
 - [K3d](https://k3d.io/v5.4.2/)
+- [Как исправить ошибку с диапазоном IP-адресов](https://www.virtualbox.org/manual/ch06.html#network_hostonly)
 
+[//]: # (- []&#40;&#41;)
 [//]: # (- []&#40;&#41;)
 [//]: # (- []&#40;&#41;)
 [//]: # (- []&#40;&#41;)
