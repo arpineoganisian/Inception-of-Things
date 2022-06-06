@@ -12,6 +12,10 @@ _System Administration related exercise_
 
 `vagrant status` tells the state of the machines
 
+`vagrant ssh [name]` will SSH into a machine and give you access to a shell
+
+
+
 ### p2: K3s and three simple applications
 
 ### p3: K3d and Argo CD
@@ -24,9 +28,10 @@ _System Administration related exercise_
 - [Vagrant Boxes](https://app.vagrantup.com/boxes/search)
 - [Vagrant Documentation](https://www.vagrantup.com/docs)
 - [Vagrantfile Documentation](vagrantup.com/docs/vagrantfile)
-- [VBoxManage - утилита для внесения изменений в виртуальную машину из командной строки](https://www.virtualbox.org/manual/ch08.html)
+- [VBoxManage - утилита для внесения изменений в виртуальную машину из командной строки](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-modifyvm.html)
 - [Про мини-кластеры в Kubernetes в целом](https://habr.com/ru/company/flant/blog/572188/)
 - [K3s](https://k3s.io/)
+- [K3s documentation](https://rancher.com/docs/k3s/latest/en/)
 - [K3d](https://k3d.io/v5.4.2/)
 - [Как исправить ошибку с диапазоном IP-адресов](https://www.virtualbox.org/manual/ch06.html#network_hostonly)
 
