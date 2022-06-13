@@ -3,6 +3,11 @@
 # TODO
 echo "127.0.0.1 $(hostname)" >> /etc/hosts
 
+# добавление открытого ключа
+cat /home/vagrant/.ssh/id_rsa.pub  >> /home/vagrant/.ssh/authorized_keys
+sudo mkdir /root/.ssh
+cp -R  /home/vagrant/.ssh/*  /root/.ssh
+
 # Installing the net-tools package (i.e. ifconfig) using the yum command
 sudo yum install -y net-tools
 
@@ -13,7 +18,7 @@ export K3S_KUBECONFIG_MODE="644"
 # Command with flags to use for launching K3s in the service.
 # If the command is not specified, and the K3S_URL is set, it will default to “agent.”
 # If K3S_URL not set, it will default to “server.”
-export INSTALL_K3S_EXEC="--node-ip 192.168.42.110"
+export INSTALL_K3S_EXEC="server --node-ip 192.168.42.110"
 
 # Installation with Script
 curl -sfL https://get.k3s.io | sh -

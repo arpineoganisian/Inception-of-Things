@@ -1,8 +1,9 @@
-# system("
-#     if [ #{ARGV[0]} = 'up' ]; then
-#         ssh-keygen -f key -q -N ""
-#     fi
-# ")
+# Генерируем ssh ключ (system() - Ruby функция)
+system("
+    if [ #{ARGV[0]} = 'up' ]; then
+        ./ssh_gen.sh
+    fi
+")
 
 Vagrant.configure(2) do |config|
     # Образ виртуальной машины с Vagrant Cloud - по сабджекту CentOS
@@ -32,8 +33,8 @@ Vagrant.configure(2) do |config|
             v.cpus = 1
         end
         #
-#         server.vm.provision "file", source: "./key.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
-#         server.vm.provision "file", source: "./key", destination: "/home/vagrant/.ssh/id_rsa"
+        server.vm.provision "file", source: "./key.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
+        server.vm.provision "file", source: "./key", destination: "/home/vagrant/.ssh/id_rsa"
         # Команда, которая выполнится после создания машины
         server.vm.provision "shell", run: "always", path: "./install_server.sh"
     end
@@ -49,8 +50,8 @@ Vagrant.configure(2) do |config|
             v.memory = "1024"
             v.cpus = 1
         end
-#         agent.vm.provision "file", source: "./key.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
-#         agent.vm.provision "file", source: "./key", destination: "/home/vagrant/.ssh/id_rsa"
+        agent.vm.provision "file", source: "./key.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
+        agent.vm.provision "file", source: "./key", destination: "/home/vagrant/.ssh/id_rsa"
         agent.vm.provision "shell", run: "always", path: "./install_serverworker.sh"
     end
 

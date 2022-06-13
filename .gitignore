@@ -1,3 +1,5 @@
 .idea
 .DS_Store
 p1/.vagrant
+key
+key.pub

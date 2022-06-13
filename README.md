@@ -14,6 +14,8 @@ _System Administration related exercise_
 
 `vagrant ssh [name]` will SSH into a machine and give you access to a shell
 
+`kubectl get nodes`  получить все рабочие узлы
+
 
 
 ### p2: K3s and three simple applications
@@ -29,15 +31,17 @@ _System Administration related exercise_
 - [Vagrant Documentation](https://www.vagrantup.com/docs)
 - [Vagrantfile Documentation](vagrantup.com/docs/vagrantfile)
 - [VBoxManage - утилита для внесения изменений в виртуальную машину из командной строки](https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-modifyvm.html)
+- [system()](https://ruby-doc.org/core-2.2.2/Kernel.html#method-i-system)
 - [Как исправить ошибку с диапазоном IP-адресов](https://www.virtualbox.org/manual/ch06.html#network_hostonly)
 - [Установить net-tools в CentOS (для команды ifconfig)](https://www.itzgeek.com/how-tos/linux/centos-how-tos/ifconfig-command-not-found-on-centos-8-rhel-8-quick-fix.html)
+- [K8s documentation](https://kubernetes.io/ru/docs/home/)
 - [Про мини-кластеры в Kubernetes в целом](https://habr.com/ru/company/flant/blog/572188/)
 - [K3s](https://k3s.io/)
 - [K3d](https://k3d.io/v5.4.2/)
 - [K3s documentation](https://rancher.com/docs/k3s/latest/en/)
 - [K3s tuto](https://www.youtube.com/watch?v=1hwGdey7iUU)
 - [Rancher K3s first steps](https://gitlab.com/cloud-versity/rancher-k3s-first-steps)
-- []()
+- [Шпаргалка по kubectl](https://kubernetes.io/ru/docs/reference/kubectl/cheatsheet/)
 - []()
 - []()
 - []()
