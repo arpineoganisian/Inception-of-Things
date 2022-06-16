@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO
 echo "127.0.0.1 $(hostname)" >> /etc/hosts
 
 # добавление открытого ключа

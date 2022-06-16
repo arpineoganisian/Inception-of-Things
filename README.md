@@ -1,6 +1,7 @@
 # Inception-of-Things
 _System Administration related exercise_
 
+###
 ### p1: K3s and Vagrant
 `vagrant up` creates and configures guest machines
 
@@ -14,15 +15,25 @@ _System Administration related exercise_
 
 `vagrant ssh [name]` will SSH into a machine and give you access to a shell
 
-`kubectl get nodes`  получить все рабочие узлы
+`kubectl get nodes` получить все рабочие узлы
 
-
-
+###
 ### p2: K3s and three simple applications
 
+`kubectl get all` вывести все сущности
+
+`kubectl apply -f [файл.yaml]` создать ресурсы из файла
+
+`kubectl delete -f [файл.yaml]` удалить ресурсы из файла
+
+`kubectl exec -it [имя_пода] -- /bin/sh` зайти в контейнер
+
+`kubectl describe ingress`
+
+###
 ### p3: K3d and Argo CD
 
-
+###
 ### References:
 
 - [Cтатья на Notion](https://zigzag-talon-29c.notion.site/Vagrant-a569198bd62e462daa9fd1dc09db0d97) + [Видео по ней](https://www.youtube.com/watch?v=0HVukklzCQg)

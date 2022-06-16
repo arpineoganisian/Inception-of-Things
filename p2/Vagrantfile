@@ -1,0 +1,29 @@
+system("
+    if [ #{ARGV[0]} = 'up' ]; then
+        ./ssh_gen.sh
+    fi
+")
+
+Vagrant.configure(2) do |config|
+    config.vm.box = "centos/stream8"
+    config.vm.box_version = "20210210.0"
+    config.vm.box_url = "https://app.vagrantup.com/centos/boxes/stream8"
+
+    config.vm.define "hwoodwriS" do |server|
+        server.vm.hostname = "hwoodwriS"
+        server.vm.network "private_network", ip: "192.168.42.110"
+        server.vm.provider "virtualbox" do |v|
+            v.customize ["modifyvm", :id, "--name", "hwoodwriS"]
+            v.memory = "2048"
+            v.cpus = 2
+        end
+
+        server.vm.provision "file", source: "./key.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
+        server.vm.provision "file", source: "./key", destination: "/home/vagrant/.ssh/id_rsa"
+        server.vm.provision "file", source: "./deployment.yaml", destination: "/home/vagrant/deployment.yaml"
+        server.vm.provision "file", source: "./app1", destination: "/home/vagrant/app1"
+        server.vm.provision "file", source: "./app2", destination: "/home/vagrant/app2"
+        server.vm.provision "file", source: "./app3", destination: "/home/vagrant/app3"
+        server.vm.provision "shell", run: "always", path: "./install_server.sh"
+    end
+end
