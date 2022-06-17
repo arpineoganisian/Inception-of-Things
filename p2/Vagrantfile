@@ -1,6 +1,6 @@
 system("
     if [ #{ARGV[0]} = 'up' ]; then
-        ./ssh_gen.sh
+        ./scripts/ssh_gen.sh
     fi
 ")
 
@@ -26,6 +26,6 @@ Vagrant.configure(2) do |config|
         server.vm.provision "file", source: "./confs/app1", destination: "/home/vagrant/app1"
         server.vm.provision "file", source: "./confs/app2", destination: "/home/vagrant/app2"
         server.vm.provision "file", source: "./confs/app3", destination: "/home/vagrant/app3"
-        server.vm.provision "shell", run: "always", path: "./install_server.sh"
+        server.vm.provision "shell", run: "always", path: "./scripts/install_server.sh"
     end
 end
