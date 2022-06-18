@@ -9,23 +9,19 @@ Vagrant.configure(2) do |config|
     config.vm.box_version = "20210210.0"
     config.vm.box_url = "https://app.vagrantup.com/centos/boxes/stream8"
 
-    config.vm.define "hwoodwriS" do |server|
-        server.vm.hostname = "hwoodwriS"
+    config.vm.define "p3" do |server|
+        server.vm.hostname = "p3"
         server.vm.network "private_network", ip: "192.168.42.110"
         server.vm.provider "virtualbox" do |v|
-            v.customize ["modifyvm", :id, "--name", "hwoodwriS"]
+            v.customize ["modifyvm", :id, "--name", "p3"]
             v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-            v.memory = 2048
-            v.cpus = 2
+        v.memory = 8192
+        v.cpus = 4
         end
 
         server.vm.provision "file", source: "./key.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
         server.vm.provision "file", source: "./key", destination: "/home/vagrant/.ssh/id_rsa"
-        server.vm.provision "file", source: "./confs/deployment.yaml", destination: "/home/vagrant/deployment.yaml"
-        server.vm.provision "file", source: "./confs/app1", destination: "/home/vagrant/app1"
-        server.vm.provision "file", source: "./confs/app2", destination: "/home/vagrant/app2"
-        server.vm.provision "file", source: "./confs/app3", destination: "/home/vagrant/app3"
-        server.vm.provision "shell", run: "always", path: "./scripts/install_server.sh"
+        server.vm.provision "file", source: "./scripts/init_start.sh", destination: "/home/vagrant/init_start.sh"
     end
 end
