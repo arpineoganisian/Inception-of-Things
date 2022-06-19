@@ -46,6 +46,7 @@ _System Administration related exercise_
 
 `kubectl get -n [имя_кластера] [сущность_кубернетиса]` получить список в определенном неймспейсе
 
+### bonus - K3d and Argo CD
 ``
 ``
 ``

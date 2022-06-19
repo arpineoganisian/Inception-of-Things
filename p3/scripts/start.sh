@@ -12,10 +12,12 @@ sudo k3d cluster create p3 -p 8080:80@loadbalancer --wait
 sudo kubectl create namespace argocd
 sudo kubectl create namespace dev
 
-# installing Argo CD
+# installing & configuring Argo CD
 sudo kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+sudo kubectl apply -n argocd -f ../confs/application.yaml
 
-sudo kubectl apply -n argocd -f application.yaml
+# waiting all pods to run
+sudo kubectl wait --for=condition=Ready pods --all -n argocd
 
 sudo kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.password} | base64 --decode > password
 
