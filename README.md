@@ -76,7 +76,7 @@ _System Administration related exercise_
 - [tuto - Argo CD](https://www.youtube.com/watch?v=MeU5_k9ssrs)
 - [tuto - Ingress](https://www.youtube.com/watch?v=80Ew_fsV4rM)
 - [Complete Kubernetes Tutorial for Beginners](https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC)
-- [Установка Ubuntu на VirtualBox](https://nastroyvse.ru/opersys/lix/kak-ustanovit-ubuntu-na-virtualbox.html)
+- [Установка Ubuntu на VirtualBox](https://www.youtube.com/watch?v=j1FAZ0bUEvs)
 - [Ubuntu](https://ubuntu.com/download/desktop/thank-you?version=22.04&architecture=amd64)
 - []()
 

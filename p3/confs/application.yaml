@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: argocd-app
 spec:
-  project: development
+  project: default
   source:
     repoURL: https://github.com/arpineoganisian/hwoodwri_config.git
     targetRevision: HEAD

@@ -28,10 +28,15 @@ kubectl create namespace dev
 # install Argo CD
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-/usr/local/bin/kubectl wait --for=condition=available deployment --all -n argocd --timeout=1m
-/usr/local/bin/kubectl wait --for=condition=ready pod --all -n argocd --timeout=1m
+# ждем, пока все поды будут готовы
+kubectl wait --for=condition=Ready pods --all -n argocd
+
+
+kubectl apply -f ../confs/project.yaml -n argocd
+
+kubectl apply -f ../confs/application.yaml -n argocd
 
 # Argo CD UI
 # port-forward tunnels the traffic from a specified port (8080) at your local host machine to the specified port (443) on the specified pod (svc argocd-server)
 #kubectl port-forward -n argocd svc/argocd-server 8080:443
-sudo kubectl port-forward svc/argocd-server --address 10.11.1.253 -n argocd 8081:80
+#kubectl port-forward svc/argocd-server --address 10.11.1.253 -n argocd 8081:80
