@@ -1,20 +1,5 @@
 #!/bin/bash
 
-#ДЛЯ УБУНТУ
-## update the apt package index
-#sudo apt-get update
-#
-##install docker
-#sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-## install k3d
-#curl: `#!bash curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash`
-
-
-#ДЛЯ СЕНТ ОС
-#localectl set-locale LANG=en_US.UTF-8
-
-# Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository.
-# Afterward, you can install and update Docker from the repository.
 sudo yum install -y yum-utils
 sudo yum-config-manager \
     --add-repo \
@@ -34,11 +19,19 @@ sudo service docker start
 sudo chmod 666 /var/run/docker.sock
 
 # создаем кластер
-k3d cluster create p3
+k3d cluster create p3 -p 8080:80@loadbalancer
 
-## создание пространств имен
+# создание пространств имен
 kubectl create namespace argocd
 kubectl create namespace dev
 
+# install Argo CD
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
+/usr/local/bin/kubectl wait --for=condition=available deployment --all -n argocd --timeout=1m
+/usr/local/bin/kubectl wait --for=condition=ready pod --all -n argocd --timeout=1m
 
+# Argo CD UI
+# port-forward tunnels the traffic from a specified port (8080) at your local host machine to the specified port (443) on the specified pod (svc argocd-server)
+#kubectl port-forward -n argocd svc/argocd-server 8080:443
+sudo kubectl port-forward svc/argocd-server --address 10.11.1.253 -n argocd 8081:80

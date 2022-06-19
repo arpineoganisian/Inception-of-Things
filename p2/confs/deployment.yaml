@@ -127,13 +127,13 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: main-ingress
+  name: p2-ingress
 spec:
   rules:
     - host: app1.com
       http:
         paths:
-          - path: /app1.com
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -143,7 +143,7 @@ spec:
     - host: app2.com
       http:
         paths:
-          - path: /app2.com
+          - path: /
             pathType: Prefix
             backend:
               service:
