@@ -46,6 +46,17 @@ _System Administration related exercise_
 
 `kubectl get -n [имя_кластера] [сущность_кубернетиса]` получить список в определенном неймспейсе
 
+`ssh [username]@[host] -p [port]` доступ через ssh
+
+`scp /path/to/file username@a:/path/to/destination` скопировать файл по SSH в виртуалку
+
+`netstat -tupln | grep LISTEN` Проверяем список открытых портов
+``
+``
+``
+
+
+
 ### bonus - K3d and Argo CD
 ``
 ``
@@ -79,5 +90,10 @@ _System Administration related exercise_
 - [Complete Kubernetes Tutorial for Beginners](https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC)
 - [Установка Ubuntu на VirtualBox](https://www.youtube.com/watch?v=j1FAZ0bUEvs)
 - [Ubuntu](https://ubuntu.com/download/desktop/thank-you?version=22.04&architecture=amd64)
+- [argo cd](https://argo-cd.readthedocs.io/en/stable/getting_started/)
+- []()
+- []()
+- []()
+- []()
 - []()
 

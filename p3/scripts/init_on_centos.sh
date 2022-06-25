@@ -1,12 +1,13 @@
 #!/bin/bash
 
-sudo yum install -y yum-utils
+sudo yum install -y yum-utils vim net-tools
+#  openssh-server
 sudo yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 
 # Install the latest version of Docker Engine, containerd, and Docker Compose
-sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # Install K3d
 curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 # Install kubectl

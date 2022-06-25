@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
 
     config.vm.define "p3" do |server|
         server.vm.hostname = "p3"
-        server.vm.network "private_network", ip: "192.168.42.110"
+        server.vm.network "private_network", ip: "192.168.42.200"
         server.vm.provider "virtualbox" do |v|
             v.customize ["modifyvm", :id, "--name", "p3"]
             v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
