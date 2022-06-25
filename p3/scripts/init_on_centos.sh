@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo yum update
+
 sudo yum install -y yum-utils vim net-tools
 #  openssh-server
 sudo yum-config-manager \

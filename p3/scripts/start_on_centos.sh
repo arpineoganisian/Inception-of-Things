@@ -2,7 +2,7 @@
 
 sudo systemctl start docker
 
-sudo /usr/local/bin/k3d cluster create p3 -p "8080:80@loadbalancer" --wait
+sudo /usr/local/bin/k3d cluster create p3 -p "8080:80@loadbalancer" -p "8888:8888@loadbalancer" --wait
 # map port 8081 from the host to port 80 on the container which matches the nodefilter loadbalancer“
 #the loadbalancer nodefilter matches only the serverlb that’s deployed in front of a cluster’s server nodes
 #all ports exposed on the serverlb will be proxied to the same ports on all server nodes in the cluster
